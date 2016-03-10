@@ -1,0 +1,67 @@
+using UnityEngine;
+using UnityEditor;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.IO;
+
+
+
+public class Arkanoid : EditorWindow
+{
+    //PTData DB;
+
+    [MenuItem("NEXTI/Ark!")]
+    static void ToolBarWindow()
+    {
+        Arkanoid window = (Arkanoid)EditorWindow.GetWindow(typeof(Arkanoid));
+        window.Show();
+    }
+
+    GUIStyle Ball = new GUIStyle();
+    float speed;
+    float xdir;
+    float ydir;
+    float xpos;
+    float ypos;
+
+    void OnEnable()
+    {
+        LoadData();  //데이터 로드
+        speed = 0.3f;
+        xdir = 0.3f;
+        ydir = 0.3f;
+        xpos = 0;
+        ypos = 0;
+
+    }
+
+    //void LoadData()
+    //{
+    //    DB = (PTData)AssetDatabase.LoadAssetAtPath("Assets/POWERTOOLS/Data/ptDatas.asset", typeof(PTData));
+    //}
+
+
+    void OnGUI()
+    {
+        Balls();
+        Repaint();
+    }
+
+    void Balls()
+    {
+        xpos += xdir;
+        ypos += ydir;
+        if (xpos > Screen.width - 10) xdir *= -1;
+        if (xpos < 0) xdir *= -1;
+        if (ypos > Screen.height - 30) ydir *= -1;
+        if (ypos < 0) ydir *= -1;
+
+     
+
+        GUI.Box(new Rect(xpos, ypos, 10, 10), "");
+     
+    }
+
+
+}
