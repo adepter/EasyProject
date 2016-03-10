@@ -27,7 +27,7 @@ public class Arkanoid : EditorWindow
 
     void OnEnable()
     {
-        LoadData();  //데이터 로드
+        //LoadData();  //데이터 로드
         speed = 0.3f;
         xdir = 0.3f;
         ydir = 0.3f;
